@@ -4,7 +4,6 @@ pipeline {
         string(name: 'maven_version', defaultValue: '3.9.3', description: 'Pass the version of Maven')
         string(name: 'terraform_version', defaultValue: '1.8.5', description: 'Pass the version of Terraform')	
         string(name: 'JAVA_VERSION', defaultValue: '11', description: 'Version of Java to download (e.g., 16, 17)')
-        boolean(name: 'INSTALL_GIT', defaultValue: true, description: 'Install Git')		
     }
     stages {
         stage('Download Maven') {
@@ -31,13 +30,6 @@ pipeline {
                     sh "curl -O ${javaUrl}"
             }
         }	
-        stage('Download Git') {
-            steps {
-                sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y git
-                '''
-            }
-        }			
+        
     }
 }
